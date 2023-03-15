@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\CrudInterface;
 use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
+
+    private CrudInterface $model;
+
+    public function __construct(CrudInterface $model)
+    {
+        $this->model  = $model;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return $this->model->index();
     }
 
     /**
