@@ -27,4 +27,9 @@ class EnderecoRepository implements CrudInterface
     {
         // TODO: Implement delete() method.
     }
+
+    public function store(Request $request)
+    {
+        // TODO: Implement store() method.
+    }
 }
