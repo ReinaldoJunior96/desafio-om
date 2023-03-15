@@ -22,7 +22,7 @@ class PacienteFactory extends Factory
             'nomeMae' => fake()->name('female'),
             'dataNascimento' => fake()->dateTimeBetween('1990-01-01', '2012-12-31'),
             'cpf' => $faker->cpf, // password
-            'cns' => random_int(111,999),
+            'cns' => fake()->numberBetween(1000, 9999),
         ];
     }
 }
