@@ -3,14 +3,22 @@
 namespace App\Repositories;
 
 use App\Contracts\CrudInterface;
+use App\Http\Resources\PacienteResource;
+use App\Models\Paciente;
 use Illuminate\Http\Client\Request;
 
 class PacienteRepository implements CrudInterface
 {
+    private Paciente $model;
+
+    public function __construct(Paciente $model)
+    {
+        $this->model = $model;
+    }
 
     public function index()
     {
-        // TODO: Implement index() method.
+        return PacienteResource::collection($this->model->all());
     }
 
     public function show($param)
