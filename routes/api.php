@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\PacienteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,5 +23,15 @@ Route::prefix('pacientes')->group(function () {
         Route::post('to/create', 'store');
         Route::put('to/update/{paciente}', 'update');
         Route::delete('to/delete/{paciente}', 'destroy');
+    });
+});
+
+Route::prefix('enderecos')->group(function () {
+    Route::controller(EnderecoController::class)->group(function () {
+        Route::get('all', 'index');
+        Route::get('show/{endereco}', 'show');
+        Route::post('to/create', 'store');
+        Route::put('to/update/{endereco}', 'update');
+        Route::delete('to/delete/{endereco}', 'destroy');
     });
 });
