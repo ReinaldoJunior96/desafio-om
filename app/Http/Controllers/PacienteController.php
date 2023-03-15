@@ -12,7 +12,7 @@ class PacienteController extends Controller
 
     public function __construct(CrudInterface $model)
     {
-        $this->model  = $model;
+        $this->model = $model;
     }
 
     /**
@@ -26,9 +26,9 @@ class PacienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $paciente)
     {
-        //
+        return $this->model->show($paciente);
     }
 
     /**
@@ -36,24 +36,22 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->model->show($request);
     }
-
-
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $paciente)
     {
-        //
+        $this->model->update($request, $paciente);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $paciente)
     {
-        //
+        $this->model->destroy($paciente);
     }
 }
