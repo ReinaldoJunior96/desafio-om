@@ -20,7 +20,8 @@ class PacienteResource extends JsonResource
             'nome_mae' => $this->nomeMae,
             'data_nascimento' => $this->dataNascimento,
             'cpf' => $this->cpf,
-            'cns' => $this->cns
+            'cns' => $this->cns,
+            'endereco' => $this->endereco
         ];
     }
 }
