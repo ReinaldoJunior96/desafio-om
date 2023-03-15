@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('bairro')->nullable();
             $table->string('cidade')->nullable();
             $table->string('estado')->nullable();
-            $table->unsignedBigInteger('pacienteid')->nullable();
-            $table->foreign('pacienteid')->references('id')->on('pacientes');
+            $table->unsignedBigInteger('paciente_id')->nullable();
+            $table->foreign('paciente_id')->references('id')->on('pacientes');
             $table->timestamps();
         });
     }
