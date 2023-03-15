@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('pacientes')->group(function(){
-   Route::controller(PacienteController::class)->group(function(){
-       Route::get('all','index');
-   }) ;
+Route::prefix('pacientes')->group(function () {
+    Route::controller(PacienteController::class)->group(function () {
+        Route::get('all', 'index');
+        Route::get('show/{paciente}', 'show');
+        Route::post('to/create', 'store');
+        Route::put('to/update/{paciente}', 'update');
+        Route::delete('to/delete/{paciente}', 'destroy');
+    });
 });
