@@ -2,7 +2,9 @@
 
 namespace App\Contracts;
 
-use Illuminate\Http\Client\Request;
+
+
+use Illuminate\Http\Request;
 
 interface CrudInterface
 {
@@ -12,8 +14,8 @@ interface CrudInterface
 
     public function store(Request $request);
 
-    public function update(Request $request, $param);
+    public function update($request, $param);
 
-    public function destroy();
+    public function destroy($paciente);
 
 }
