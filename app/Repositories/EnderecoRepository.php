@@ -3,33 +3,80 @@
 namespace App\Repositories;
 
 use App\Contracts\CrudInterface;
+use App\Contracts\ViaCepInterface;
+use App\Http\Resources\EnderecoResource;
+use App\Models\Endereco;
 use Illuminate\Http\Client\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Cache;
 
-class EnderecoRepository implements CrudInterface
+class EnderecoRepository implements CrudInterface, ViaCepInterface
 {
+    private Endereco $model;
 
-    public function index()
+    public function __construct(Endereco $model)
     {
-        // TODO: Implement index() method.
+        $this->model = $model;
     }
 
-    public function show($param)
+    public function index(): AnonymousResourceCollection
     {
-        // TODO: Implement show() method.
+        return EnderecoResource::collection($this->model->all());
     }
 
-    public function update(Request $request, $param)
+    public function show($param): EnderecoResource
     {
-        // TODO: Implement update() method.
+        return EnderecoResource::make($this->model->find($param));
     }
 
-    public function destroy()
+    public function update($request, $param)
     {
-        // TODO: Implement delete() method.
+        $address = $this->model->find($param);
+
+        $address->cep = $request->cep;
+        $address->endereco = $request->endereco;
+        $address->numero = $request->numero;
+        $address->complemento = $request->complemento;
+        $address->bairro = $request->bairro;
+        $address->cidade = $request->cidade;
+        $address->estado = $request->estado;
+
+        $address->save();
+
+        return response()->json('Success', 200);
     }
 
-    public function store(Request $request)
+
+    public function store(\Illuminate\Http\Request $request): JsonResponse
     {
-        // TODO: Implement store() method.
+
+        $this->model->create([
+            'cep' => $request->cep,
+            'endereco' => $request->endereco,
+            'numero' => $request->numero,
+            'complemento' => $request->complemento,
+            'bairro' => $request->bairro,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
+        ]);
+
+        return response()->json('Success', 200);
+    }
+
+    public function destroy($endereco): JsonResponse
+    {
+        $this->model->find($endereco)->delete();
+        return response()->json('Paciente deletado com sucesso!', 200);
+    }
+
+    public function buscarCep($cep): string
+    {
+        $exp = 3600; // tempo em segudos para expirar o cache
+        $key = $cep;
+
+        return Cache::remember($key, $exp, function () use ($cep) {
+            return file_get_contents('https://viacep.com.br/ws/' . $cep . '/json/');
+        });
     }
 }
