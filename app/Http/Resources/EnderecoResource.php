@@ -15,7 +15,14 @@ class EnderecoResource extends JsonResource
     public function toArray(Request $request): array
     {
 
-        return parent::toArray($request);
+        //return parent::toArray($request);
+        return [
+            'cep' => $this->cep,
+            'endereco' => $this->endereco,
+            'numero' => $this->numero,
+            'bairro' => $this->bairro,
+            'estado' => $this->estado
+        ];
 
     }
 }
