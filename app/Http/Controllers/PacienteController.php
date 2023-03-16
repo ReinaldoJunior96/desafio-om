@@ -36,7 +36,7 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        $this->model->show($request);
+        return $this->model->store($request);
     }
 
     /**
@@ -44,14 +44,14 @@ class PacienteController extends Controller
      */
     public function update(Request $request, string $paciente)
     {
-        $this->model->update($request, $paciente);
+        return $this->model->update($request, $paciente);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $paciente)
+    public function destroy($paciente)
     {
-        $this->model->destroy($paciente);
+        return $this->model->destroy($paciente);
     }
 }
