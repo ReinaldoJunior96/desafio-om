@@ -33,5 +33,9 @@ Route::prefix('enderecos')->group(function () {
         Route::post('to/create', 'store');
         Route::put('to/update/{endereco}', 'update');
         Route::delete('to/delete/{endereco}', 'destroy');
+
+        Route::get('seach/cep/{cep}', 'buscarCep');
     });
 });
+
+
