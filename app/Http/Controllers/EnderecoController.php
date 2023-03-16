@@ -9,7 +9,7 @@ class EnderecoController extends Controller
 {
     private CrudInterface $model;
 
-    public function __construct(CrudInterfaceace $model)
+    public function __construct(CrudInterface $model)
     {
         $this->model = $model;
     }
@@ -52,5 +52,10 @@ class EnderecoController extends Controller
     public function destroy(string $endereco)
     {
         $this->model->destroy($endereco);
+    }
+
+    public function buscarCep($cep)
+    {
+        return $this->model->buscarCep($cep);
     }
 }
