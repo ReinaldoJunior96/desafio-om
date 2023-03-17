@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('cidade')->nullable();
             $table->string('estado')->nullable();
             $table->unsignedBigInteger('paciente_id')->nullable();
-            $table->foreign('paciente_id')->references('id')->on('pacientes');
+            $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
             $table->timestamps();
         });
     }
