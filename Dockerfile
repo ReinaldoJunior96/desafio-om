@@ -6,7 +6,8 @@ RUN set -ex \
     	&& apk --no-cache add postgresql-dev nodejs yarn npm\
     	&& docker-php-ext-install pdo pdo_pgsql
 
-RUN docker exec bash -c "php artisan migrate && php artisan queue:work"
+RUN docker exec bash -c "php artisan migrate"
+#RUN docker exec bash -c "php artisan queue:work"
 
 
 WORKDIR /var/www/html
