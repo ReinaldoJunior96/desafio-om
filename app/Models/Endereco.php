@@ -13,6 +13,12 @@ class Endereco extends Model
     protected $table = 'enderecos';
     protected $fillable = ['cep', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'paciente_id'];
 
+    public function validaEndereco($param): bool
+    {
+        return empty((bool)Endereco::find($param));
+
+    }
+
 
     public function paciente(): BelongsTo
     {

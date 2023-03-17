@@ -35,7 +35,7 @@ class EnderecoController extends Controller
      */
     public function store(Request $request)
     {
-        $this->model->show($request);
+        return $this->model->store($request);
     }
 
     /**
@@ -43,7 +43,7 @@ class EnderecoController extends Controller
      */
     public function update(Request $request, string $endereco)
     {
-        $this->model->update($request, $endereco);
+        return $this->model->update($request, $endereco);
     }
 
     /**
@@ -51,7 +51,7 @@ class EnderecoController extends Controller
      */
     public function destroy(string $endereco)
     {
-        $this->model->destroy($endereco);
+        return $this->model->destroy($endereco);
     }
 
     public function buscarCep($cep)

@@ -30,8 +30,12 @@ class EnderecoRepository implements CrudInterface, ViaCepInterface
         return EnderecoResource::make($this->model->find($param));
     }
 
-    public function update($request, $param)
+    public function update($request, $param): JsonResponse
     {
+        if($this->model->validaEndereco($param)){
+            return response()->json('Endereco não encontrado', 404);
+        }
+
         $address = $this->model->find($param);
 
         $address->cep = $request->cep;
@@ -50,7 +54,6 @@ class EnderecoRepository implements CrudInterface, ViaCepInterface
 
     public function store(\Illuminate\Http\Request $request): JsonResponse
     {
-
         $this->model->create([
             'cep' => $request->cep,
             'endereco' => $request->endereco,
@@ -59,14 +62,21 @@ class EnderecoRepository implements CrudInterface, ViaCepInterface
             'bairro' => $request->bairro,
             'cidade' => $request->cidade,
             'estado' => $request->estado,
+            'paciente_id' => $request->pacienteid,
         ]);
 
-        return response()->json('Success', 200);
+        return response()->json('Success');
     }
 
     public function destroy($endereco): JsonResponse
     {
+        if($this->model->validaEndereco($endereco)){
+            return response()->json('Endereco não encontrado', 404);
+        }
+
         $this->model->find($endereco)->delete();
+
+
         return response()->json('Paciente deletado com sucesso!', 200);
     }
 
