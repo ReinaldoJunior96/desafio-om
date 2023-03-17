@@ -54,4 +54,14 @@ class PacienteController extends Controller
     {
         return $this->model->destroy($paciente);
     }
+
+    public function importarCsv(Request $request): string
+    {
+        return $this->model->importarCsv($request);
+    }
+
+    public function buscarPorCpf($cpf)
+    {
+        return $this->model->buscarPorCpf($cpf);
+    }
 }
