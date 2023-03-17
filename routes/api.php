@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\PacienteController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +20,13 @@ Route::prefix('pacientes')->group(function () {
         Route::get('all', 'index');
         Route::get('show/{paciente}', 'show');
         Route::post('to/create', 'store');
-        Route::put('to/update/{paciente}', 'update');
+        // obs: A rota de update no insomnia deve ser feita com o verbo Post para fins de teste.
+        Route::post('to/update/{paciente}', 'update');
         Route::delete('to/delete/{paciente}', 'destroy');
+
+
+        Route::post('import/csv', 'importarCsv');
+        Route::get('show/with/cpf/{cpf}', 'buscarPorCpf');
     });
 });
 
@@ -31,7 +35,9 @@ Route::prefix('enderecos')->group(function () {
         Route::get('all', 'index');
         Route::get('show/{endereco}', 'show');
         Route::post('to/create', 'store');
-        Route::put('to/update/{endereco}', 'update');
+        // obs: A rota de update no insomnia deve ser feita com o verbo Post para fins de teste.
+        Route::post('to/update/{endereco}', 'update');
+
         Route::delete('to/delete/{endereco}', 'destroy');
 
         Route::get('seach/cep/{cep}', 'buscarCep');
