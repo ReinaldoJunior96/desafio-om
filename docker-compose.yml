@@ -29,6 +29,9 @@ services:
             - ./:/var/www/html
         ports:
             - "9001:9000"
+        entrypoint: >
+            sh -c "php artisan migrate:fresh --seed && php-fpm"
+
         networks:
             - webapp
 
@@ -36,6 +39,7 @@ services:
         image: postgres:12.3-alpine
         container_name: ${APP_NAME}_postgres
         restart: unless-stopped
+
         ports:
             - "5433:5432"
         volumes:

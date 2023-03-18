@@ -9,7 +9,7 @@ da aplicação seguindo os próximos passos:
 - Fazer o clone do projeto 
 - Abrir o terminal de sua preferência dentro da pasta do projeto que foi clonada
 - Execute o abaixo para "levantar" os containers da aplicação
-  - docker-composer up -d
+  - docker-compose up -d
 - Execute o comando abaixo para cadastrar os primeiros dados no banco
   - docker container exec Laravel_php php artisan migrate:fresh --seed
   
