@@ -7,17 +7,17 @@ Para execução do projeto o usuário deverá ter em sua máquina o docker insta
 da aplicação seguindo os próximos passos:
 
 - Fazer o clone do projeto 
-- Abrir o terminal de sua preferência dentro da pasta do projeto que foi clonada
-- Execute o abaixo para "levantar" os containers da aplicação
+- Renomei o arquivo .env.example para .env
+- Execute o comando
+  - docker-composer build
+- Execute o comando "levantar" os containers da aplicação
   - docker-compose up -d
-- Execute o comando abaixo para cadastrar os primeiros dados no banco
-  - docker container exec Laravel_php php artisan migrate:fresh --seed
-  
+- Execute composer para instalar as dependências do projeto
+  - docker container exec om_composer composer install
+- Execute execute as migrates do projeto para ter os primeiros dados
+  - docker container exec om_php php artisan migrate:fresh --seed
 - Por fim, execute o comando abaixo para trabalhar os jobs da aplicação
-  - docker container exec -d Laravel_php php artisan queue:work
-
-
-Os containers da aplicação irão ser executados e a aplicação poderá ser testada atrás da url http://127.0.0.1:8000
+  - docker container exec -d om_php php artisan queue:work
 
 ## Observações
 
